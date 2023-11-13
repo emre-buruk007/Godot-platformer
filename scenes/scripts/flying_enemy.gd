@@ -21,4 +21,5 @@ func _physics_process(delta):
 	move_and_slide()
 
 func die():
+	Global.score += 25
 	queue_free()

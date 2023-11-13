@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://bswber55bdq3h"]
+[gd_scene load_steps=11 format=3 uid="uid://bswber55bdq3h"]
 
 [ext_resource type="Texture2D" uid="uid://bfl11770dylry" path="res://assets/textures/tile_0001.png" id="1_fhiio"]
 [ext_resource type="Texture2D" uid="uid://ba0ggt3ppji48" path="res://assets/tilesets/tilemap_packed.png" id="2_ugfja"]
 [ext_resource type="PackedScene" uid="uid://t61shexrtnix" path="res://scenes/main_character.tscn" id="3_4rtfh"]
 [ext_resource type="PackedScene" uid="uid://5lox3bppik7q" path="res://scenes/flying_enemy.tscn" id="4_84hsp"]
 [ext_resource type="AudioStream" uid="uid://cnnynkdb3mtgq" path="res://assets/music/SFX/player_dying.ogg" id="5_2h42a"]
+[ext_resource type="PackedScene" uid="uid://bqt6ibamrni6j" path="res://scenes/collectible.tscn" id="6_uly25"]
+[ext_resource type="Script" path="res://scenes/scripts/ScoreLabel.gd" id="7_ev0nk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f01ti"]
 texture = ExtResource("2_ugfja")
@@ -664,3 +666,74 @@ motion_mode = 1
 
 [node name="player_dead_sfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_2h42a")
+
+[node name="Collectibles" type="Node" parent="."]
+
+[node name="collectible" parent="Collectibles" instance=ExtResource("6_uly25")]
+position = Vector2(973, 182)
+
+[node name="collectible2" parent="Collectibles" instance=ExtResource("6_uly25")]
+position = Vector2(554, 424)
+
+[node name="collectible3" parent="Collectibles" instance=ExtResource("6_uly25")]
+position = Vector2(645, 421)
+
+[node name="collectible4" parent="Collectibles" instance=ExtResource("6_uly25")]
+position = Vector2(726, 381)
+
+[node name="collectible5" parent="Collectibles" instance=ExtResource("6_uly25")]
+position = Vector2(782, 332)
+
+[node name="collectible6" parent="Collectibles" instance=ExtResource("6_uly25")]
+position = Vector2(847, 292)
+
+[node name="collectible7" parent="Collectibles" instance=ExtResource("6_uly25")]
+position = Vector2(907, 231)
+
+[node name="collectible8" parent="Collectibles" instance=ExtResource("6_uly25")]
+position = Vector2(1027, 346)
+
+[node name="collectible9" parent="Collectibles" instance=ExtResource("6_uly25")]
+position = Vector2(952, 345)
+
+[node name="collectible10" parent="Collectibles" instance=ExtResource("6_uly25")]
+position = Vector2(1028, 201)
+
+[node name="collectible11" parent="Collectibles" instance=ExtResource("6_uly25")]
+position = Vector2(1101, 393)
+
+[node name="collectible12" parent="Collectibles" instance=ExtResource("6_uly25")]
+position = Vector2(1109, 473)
+
+[node name="collectible13" parent="Collectibles" instance=ExtResource("6_uly25")]
+position = Vector2(1105, 569)
+
+[node name="collectible14" parent="Collectibles" instance=ExtResource("6_uly25")]
+position = Vector2(745, 566)
+
+[node name="collectible15" parent="Collectibles" instance=ExtResource("6_uly25")]
+position = Vector2(864, 565)
+
+[node name="collectible16" parent="Collectibles" instance=ExtResource("6_uly25")]
+position = Vector2(805, 568)
+
+[node name="collectible17" parent="Collectibles" instance=ExtResource("6_uly25")]
+position = Vector2(452, 568)
+
+[node name="collectible18" parent="Collectibles" instance=ExtResource("6_uly25")]
+position = Vector2(337, 571)
+
+[node name="collectible19" parent="Collectibles" instance=ExtResource("6_uly25")]
+position = Vector2(239, 571)
+
+[node name="ScoreLabel" type="Label" parent="."]
+modulate = Color(0, 0, 0, 1)
+texture_filter = 1
+offset_left = 55.0
+offset_top = 5.0
+offset_right = 169.0
+offset_bottom = 31.0
+scale = Vector2(2, 2)
+text = "Score: "
+vertical_alignment = 1
+script = ExtResource("7_ev0nk")

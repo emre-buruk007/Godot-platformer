@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+class_name MainCharacter
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -600.0
@@ -13,6 +13,9 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 func player_dead():
 	player_dead_sfx.play()
 	queue_free()
+	
+func check_collectible():
+	pass
 
 func _physics_process(delta):
 	#Animation

@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://bqt6ibamrni6j"]
+
+[ext_resource type="Script" path="res://scenes/scripts/collectible.gd" id="1_72q6a"]
+[ext_resource type="Texture2D" uid="uid://6pksq571dkrk" path="res://assets/textures/tile_0151.png" id="1_jdp6s"]
+[ext_resource type="Texture2D" uid="uid://cf3bf4f823mtp" path="res://assets/textures/tile_0152.png" id="2_a1vv2"]
+[ext_resource type="AudioStream" uid="uid://db6bcychlvvq" path="res://assets/music/SFX/coin_collect.wav" id="4_fgx5m"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lm1y0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_jdp6s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_a1vv2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wq72c"]
+
+[node name="collectible" type="Area2D"]
+script = ExtResource("1_72q6a")
+
+[node name="collected_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_fgx5m")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.7, 1.7)
+sprite_frames = SubResource("SpriteFrames_lm1y0")
+autoplay = "default"
+frame_progress = 0.0653876
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_wq72c")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

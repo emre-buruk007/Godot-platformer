@@ -18,6 +18,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 BackgroundMusic="*res://scenes/background_music.tscn"
+Global="*res://scenes/scripts/Global.gd"
+Sfx="*res://scenes/SFX.tscn"
 
 [input]
 
