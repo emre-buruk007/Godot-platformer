@@ -4,11 +4,15 @@ extends CharacterBody2D
 const SPEED = 300.0
 const JUMP_VELOCITY = -600.0
 @onready var animated_sprite_2d = $AnimatedSprite2D
-
+@onready var enemy_kill_sfx = $enemy_dead
+@onready var player_dead_sfx = $"../player_dead_sfx"
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+func player_dead():
+	player_dead_sfx.play()
+	queue_free()
 
 func _physics_process(delta):
 	#Animation
@@ -46,13 +50,17 @@ func _physics_process(delta):
 		# these are collisions with enemy that kill player 
 		var deadly_collision = (
 			collider is Enemy and 
-			collision.get_normal().dot(Vector2.RIGHT)> 0.5 or 
+			(collision.get_normal().dot(Vector2.RIGHT)> 0.5 or 
 			collision.get_normal().dot(Vector2.LEFT)> 0.5 or
-			collision.get_normal().dot(Vector2.DOWN)> 0.5 )
+			collision.get_normal().dot(Vector2.DOWN)> 0.5) )
 		if is_stomping:
 			velocity.y = JUMP_VELOCITY / 2
+			enemy_kill_sfx.play()
 			(collider as Enemy).die()
+		elif deadly_collision:
+			player_dead_sfx.play()
+			player_dead()
 	
 	# logic to turn the sprite during movement
 	var isLeft = velocity.x < 0
-	animated_sprite_2d.flip_h = isLeft
+	animated_sprite_2d.flip_h = isLeft	

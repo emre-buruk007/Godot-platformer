@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bswber55bdq3h"]
+[gd_scene load_steps=9 format=3 uid="uid://bswber55bdq3h"]
 
 [ext_resource type="Texture2D" uid="uid://bfl11770dylry" path="res://assets/textures/tile_0001.png" id="1_fhiio"]
 [ext_resource type="Texture2D" uid="uid://ba0ggt3ppji48" path="res://assets/tilesets/tilemap_packed.png" id="2_ugfja"]
 [ext_resource type="PackedScene" uid="uid://t61shexrtnix" path="res://scenes/main_character.tscn" id="3_4rtfh"]
 [ext_resource type="PackedScene" uid="uid://5lox3bppik7q" path="res://scenes/flying_enemy.tscn" id="4_84hsp"]
+[ext_resource type="AudioStream" uid="uid://cnnynkdb3mtgq" path="res://assets/music/SFX/player_dying.ogg" id="5_2h42a"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f01ti"]
 texture = ExtResource("2_ugfja")
@@ -660,3 +661,6 @@ rotates = false
 position = Vector2(1.00671, 0.993225)
 rotation = 3.13481
 motion_mode = 1
+
+[node name="player_dead_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_2h42a")
