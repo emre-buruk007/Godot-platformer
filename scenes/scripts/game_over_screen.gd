@@ -5,7 +5,7 @@ extends CanvasLayer
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# stop main music and play game over music
-	BackgroundMusic.stop() 
+	#BackgroundMusic.stop() 
 	bgm.play()
 
 

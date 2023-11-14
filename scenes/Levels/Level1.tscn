@@ -9,7 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://cnnynkdb3mtgq" path="res://assets/music/SFX/player_dying.ogg" id="6_n6hqm"]
 [ext_resource type="PackedScene" uid="uid://bqt6ibamrni6j" path="res://scenes/collectible.tscn" id="7_v2xep"]
 [ext_resource type="Script" path="res://scenes/scripts/ScoreLabel.gd" id="8_42yvb"]
-[ext_resource type="AudioStream" uid="uid://dx3smvcvue5xd" path="res://assets/music/BGM/Hypnotic-Puzzle4.mp3" id="9_j2lxa"]
+[ext_resource type="AudioStream" uid="uid://binpiau8gvblb" path="res://assets/music/BGM/Analog-Nostalgia.mp3" id="10_qquic"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f01ti"]
 texture = ExtResource("2_6cqxy")
@@ -781,5 +781,5 @@ vertical_alignment = 1
 script = ExtResource("8_42yvb")
 
 [node name="BGMLevel1" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("9_j2lxa")
+stream = ExtResource("10_qquic")
 volume_db = -10.306
