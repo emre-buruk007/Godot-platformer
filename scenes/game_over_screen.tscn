@@ -1,0 +1,68 @@
+[gd_scene load_steps=5 format=3 uid="uid://dylhm1fmy71au"]
+
+[ext_resource type="Script" path="res://scenes/scripts/game_over_screen.gd" id="1_xvssc"]
+[ext_resource type="AudioStream" uid="uid://dx3smvcvue5xd" path="res://assets/music/BGM/Hypnotic-Puzzle4.mp3" id="2_w6cpi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bynie"]
+bg_color = Color(0.545098, 0.333333, 0.188235, 1)
+border_width_left = 20
+border_width_top = 20
+border_width_right = 20
+border_width_bottom = 20
+border_color = Color(0.333333, 0.196078, 0.0980392, 1)
+border_blend = true
+
+[sub_resource type="LabelSettings" id="LabelSettings_y7y4d"]
+font_size = 64
+
+[node name="GameOverScreen" type="CanvasLayer"]
+script = ExtResource("1_xvssc")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bynie")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="Rows" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 300
+
+[node name="Title" type="Label" parent="PanelContainer/MarginContainer/Rows"]
+layout_mode = 2
+text = "GAME OVER!"
+label_settings = SubResource("LabelSettings_y7y4d")
+horizontal_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="PanelContainer/MarginContainer/Rows"]
+layout_mode = 2
+
+[node name="ButtonRows" type="VBoxContainer" parent="PanelContainer/MarginContainer/Rows/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ButtonRestart" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows"]
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+theme_override_font_sizes/font_size = 36
+text = " RESTART "
+
+[node name="ButtonQuit" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "QUIT"
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_w6cpi")
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows/ButtonRestart" to="." method="_on_button_restart_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows/ButtonQuit" to="." method="_on_button_quit_pressed"]

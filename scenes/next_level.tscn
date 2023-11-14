@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://npsjf3jjkxie"]
+
+[ext_resource type="Script" path="res://scenes/scripts/next_level.gd" id="1_6mici"]
+[ext_resource type="Texture2D" uid="uid://cp4i6f5d0ocgx" path="res://assets/textures/tile_0112.png" id="1_nx46x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5hdy4"]
+
+[node name="NextLevel" type="Area2D"]
+texture_filter = 1
+scale = Vector2(3, 3)
+collision_layer = 16
+script = ExtResource("1_6mici")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_5hdy4")
+
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
+texture_filter = 1
+texture = ExtResource("1_nx46x")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

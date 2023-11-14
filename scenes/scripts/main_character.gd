@@ -54,16 +54,18 @@ func _physics_process(delta):
 		var deadly_collision = (
 			collider is Enemy and 
 			(collision.get_normal().dot(Vector2.RIGHT)> 0.5 or 
-			collision.get_normal().dot(Vector2.LEFT)> 0.5 or
+			collision.get_normal().dot(Vector2.LEFT)> 0.9 or
 			collision.get_normal().dot(Vector2.DOWN)> 0.5) )
 		if is_stomping:
 			velocity.y = JUMP_VELOCITY / 2
 			enemy_kill_sfx.play()
 			(collider as Enemy).die()
 		elif deadly_collision:
-			player_dead_sfx.play()
 			player_dead()
+			get_tree().change_scene_to_file("res://scenes/game_over_screen.tscn")
+	
+	
 	
 	# logic to turn the sprite during movement
 	var isLeft = velocity.x < 0
-	animated_sprite_2d.flip_h = isLeft	
+	animated_sprite_2d.flip_h = isLeft

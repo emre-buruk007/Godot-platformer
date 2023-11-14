@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://5lox3bppik7q"]
+[gd_scene load_steps=8 format=3 uid="uid://5lox3bppik7q"]
 
 [ext_resource type="Texture2D" uid="uid://b1lvxme2tqh7e" path="res://assets/characters/tile_0024.png" id="1_7tolx"]
 [ext_resource type="Script" path="res://scenes/scripts/flying_enemy.gd" id="1_xbie4"]
 [ext_resource type="Texture2D" uid="uid://gogc0bewbdhs" path="res://assets/characters/tile_0025.png" id="2_gkdv0"]
 [ext_resource type="Texture2D" uid="uid://cb6rppsleuu8w" path="res://assets/characters/tile_0026.png" id="3_ll81t"]
+[ext_resource type="AudioStream" uid="uid://3hwmp5tmo7hy" path="res://assets/music/SFX/enemy_kill.wav" id="5_kb540"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_c3q7g"]
 animations = [{
@@ -27,6 +28,7 @@ size = Vector2(61, 50)
 
 [node name="FlyingEnemy" type="CharacterBody2D"]
 position = Vector2(881, 209)
+collision_layer = 4
 script = ExtResource("1_xbie4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -38,3 +40,6 @@ frame_progress = 0.00932474
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_x2hfv")
+
+[node name="death_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_kb540")
