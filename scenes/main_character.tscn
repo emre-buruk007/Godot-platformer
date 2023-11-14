@@ -41,7 +41,7 @@ height = 91.0
 
 [node name="MainCharacter" type="CharacterBody2D"]
 position = Vector2(89, 560)
-collision_mask = 7
+collision_mask = 23
 script = ExtResource("1_v41gs")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
