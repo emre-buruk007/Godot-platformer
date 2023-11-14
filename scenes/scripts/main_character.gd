@@ -53,9 +53,9 @@ func _physics_process(delta):
 		# these are collisions with enemy that kill player 
 		var deadly_collision = (
 			collider is Enemy and 
-			(collision.get_normal().dot(Vector2.RIGHT)> 0.5 or 
-			collision.get_normal().dot(Vector2.LEFT)> 0.9 or
-			collision.get_normal().dot(Vector2.DOWN)> 0.5) )
+			(collision.get_normal().dot(Vector2.RIGHT)> 0.1 or 
+			collision.get_normal().dot(Vector2.LEFT)> 0.1 or
+			collision.get_normal().dot(Vector2.DOWN)> 0.1) )
 		if is_stomping:
 			velocity.y = JUMP_VELOCITY / 2
 			enemy_kill_sfx.play()

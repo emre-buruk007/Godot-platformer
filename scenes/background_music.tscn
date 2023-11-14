@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://jp70444bpwrq"]
-
-[ext_resource type="AudioStream" uid="uid://binpiau8gvblb" path="res://assets/music/BGM/Analog-Nostalgia.mp3" id="1_a0e0k"]
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D"]
-stream = ExtResource("1_a0e0k")
-autoplay = true

@@ -1,16 +1,18 @@
-[gd_scene load_steps=14 format=3 uid="uid://bswber55bdq3h"]
+[gd_scene load_steps=16 format=3 uid="uid://bswber55bdq3h"]
 
-[ext_resource type="Texture2D" uid="uid://bfl11770dylry" path="res://assets/textures/tile_0001.png" id="1_2ei6d"]
-[ext_resource type="Texture2D" uid="uid://ba0ggt3ppji48" path="res://assets/tilesets/tilemap_packed.png" id="2_x1gy3"]
-[ext_resource type="Texture2D" uid="uid://bg1uuvvetlxsh" path="res://assets/tilesets/tilemap-backgrounds_packed.png" id="3_stky1"]
-[ext_resource type="PackedScene" uid="uid://t61shexrtnix" path="res://scenes/main_character.tscn" id="4_v06bd"]
-[ext_resource type="PackedScene" uid="uid://5lox3bppik7q" path="res://scenes/flying_enemy.tscn" id="5_5c6te"]
-[ext_resource type="AudioStream" uid="uid://cnnynkdb3mtgq" path="res://assets/music/SFX/player_dying.ogg" id="6_8hcbu"]
-[ext_resource type="PackedScene" uid="uid://bqt6ibamrni6j" path="res://scenes/collectible.tscn" id="7_e8qmo"]
-[ext_resource type="Script" path="res://scenes/scripts/ScoreLabel.gd" id="8_msd8i"]
+[ext_resource type="Script" path="res://scenes/scripts/Level1.gd" id="1_08mqf"]
+[ext_resource type="Texture2D" uid="uid://bfl11770dylry" path="res://assets/textures/tile_0001.png" id="1_t67bh"]
+[ext_resource type="Texture2D" uid="uid://ba0ggt3ppji48" path="res://assets/tilesets/tilemap_packed.png" id="2_6cqxy"]
+[ext_resource type="Texture2D" uid="uid://bg1uuvvetlxsh" path="res://assets/tilesets/tilemap-backgrounds_packed.png" id="3_7ampk"]
+[ext_resource type="PackedScene" uid="uid://t61shexrtnix" path="res://scenes/main_character.tscn" id="4_g7dcn"]
+[ext_resource type="PackedScene" uid="uid://5lox3bppik7q" path="res://scenes/flying_enemy.tscn" id="5_ldr8a"]
+[ext_resource type="AudioStream" uid="uid://cnnynkdb3mtgq" path="res://assets/music/SFX/player_dying.ogg" id="6_n6hqm"]
+[ext_resource type="PackedScene" uid="uid://bqt6ibamrni6j" path="res://scenes/collectible.tscn" id="7_v2xep"]
+[ext_resource type="Script" path="res://scenes/scripts/ScoreLabel.gd" id="8_42yvb"]
+[ext_resource type="AudioStream" uid="uid://dx3smvcvue5xd" path="res://assets/music/BGM/Hypnotic-Puzzle4.mp3" id="9_j2lxa"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f01ti"]
-texture = ExtResource("2_x1gy3")
+texture = ExtResource("2_6cqxy")
 texture_region_size = Vector2i(18, 18)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -627,7 +629,7 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_f01ti")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rtky3"]
-texture = ExtResource("3_stky1")
+texture = ExtResource("3_7ampk")
 texture_region_size = Vector2i(24, 24)
 0:0/0 = 0
 1:0/0 = 0
@@ -664,7 +666,8 @@ _data = {
 }
 point_count = 3
 
-[node name="Node" type="Node"]
+[node name="Level1" type="Node"]
+script = ExtResource("1_08mqf")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 anchors_preset = 15
@@ -672,7 +675,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_2ei6d")
+texture = ExtResource("1_t67bh")
 
 [node name="TileMap" type="TileMap" parent="."]
 texture_filter = 1
@@ -688,7 +691,7 @@ scale = Vector2(3, 3)
 tile_set = SubResource("TileSet_4aa81")
 format = 2
 
-[node name="MainCharacter" parent="." instance=ExtResource("4_v06bd")]
+[node name="MainCharacter" parent="." instance=ExtResource("4_g7dcn")]
 
 [node name="Path2D" type="Path2D" parent="."]
 curve = SubResource("Curve2D_fcvll")
@@ -698,71 +701,71 @@ position = Vector2(1101, 200)
 rotation = -3.13481
 rotates = false
 
-[node name="FlyingEnemy" parent="Path2D/PathFollow2D" instance=ExtResource("5_5c6te")]
+[node name="FlyingEnemy" parent="Path2D/PathFollow2D" instance=ExtResource("5_ldr8a")]
 position = Vector2(1.00671, 0.993225)
 rotation = 3.13481
 motion_mode = 1
 
 [node name="player_dead_sfx" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_8hcbu")
+stream = ExtResource("6_n6hqm")
 
 [node name="Collectibles" type="Node" parent="."]
 
-[node name="collectible" parent="Collectibles" instance=ExtResource("7_e8qmo")]
+[node name="collectible" parent="Collectibles" instance=ExtResource("7_v2xep")]
 position = Vector2(973, 182)
 
-[node name="collectible2" parent="Collectibles" instance=ExtResource("7_e8qmo")]
+[node name="collectible2" parent="Collectibles" instance=ExtResource("7_v2xep")]
 position = Vector2(554, 424)
 
-[node name="collectible3" parent="Collectibles" instance=ExtResource("7_e8qmo")]
+[node name="collectible3" parent="Collectibles" instance=ExtResource("7_v2xep")]
 position = Vector2(645, 421)
 
-[node name="collectible4" parent="Collectibles" instance=ExtResource("7_e8qmo")]
+[node name="collectible4" parent="Collectibles" instance=ExtResource("7_v2xep")]
 position = Vector2(726, 381)
 
-[node name="collectible5" parent="Collectibles" instance=ExtResource("7_e8qmo")]
+[node name="collectible5" parent="Collectibles" instance=ExtResource("7_v2xep")]
 position = Vector2(782, 332)
 
-[node name="collectible6" parent="Collectibles" instance=ExtResource("7_e8qmo")]
+[node name="collectible6" parent="Collectibles" instance=ExtResource("7_v2xep")]
 position = Vector2(847, 292)
 
-[node name="collectible7" parent="Collectibles" instance=ExtResource("7_e8qmo")]
+[node name="collectible7" parent="Collectibles" instance=ExtResource("7_v2xep")]
 position = Vector2(907, 231)
 
-[node name="collectible8" parent="Collectibles" instance=ExtResource("7_e8qmo")]
+[node name="collectible8" parent="Collectibles" instance=ExtResource("7_v2xep")]
 position = Vector2(1027, 346)
 
-[node name="collectible9" parent="Collectibles" instance=ExtResource("7_e8qmo")]
+[node name="collectible9" parent="Collectibles" instance=ExtResource("7_v2xep")]
 position = Vector2(952, 345)
 
-[node name="collectible10" parent="Collectibles" instance=ExtResource("7_e8qmo")]
+[node name="collectible10" parent="Collectibles" instance=ExtResource("7_v2xep")]
 position = Vector2(1028, 201)
 
-[node name="collectible11" parent="Collectibles" instance=ExtResource("7_e8qmo")]
+[node name="collectible11" parent="Collectibles" instance=ExtResource("7_v2xep")]
 position = Vector2(1101, 393)
 
-[node name="collectible12" parent="Collectibles" instance=ExtResource("7_e8qmo")]
+[node name="collectible12" parent="Collectibles" instance=ExtResource("7_v2xep")]
 position = Vector2(1109, 473)
 
-[node name="collectible13" parent="Collectibles" instance=ExtResource("7_e8qmo")]
+[node name="collectible13" parent="Collectibles" instance=ExtResource("7_v2xep")]
 position = Vector2(1105, 569)
 
-[node name="collectible14" parent="Collectibles" instance=ExtResource("7_e8qmo")]
+[node name="collectible14" parent="Collectibles" instance=ExtResource("7_v2xep")]
 position = Vector2(745, 566)
 
-[node name="collectible15" parent="Collectibles" instance=ExtResource("7_e8qmo")]
+[node name="collectible15" parent="Collectibles" instance=ExtResource("7_v2xep")]
 position = Vector2(864, 565)
 
-[node name="collectible16" parent="Collectibles" instance=ExtResource("7_e8qmo")]
+[node name="collectible16" parent="Collectibles" instance=ExtResource("7_v2xep")]
 position = Vector2(805, 568)
 
-[node name="collectible17" parent="Collectibles" instance=ExtResource("7_e8qmo")]
+[node name="collectible17" parent="Collectibles" instance=ExtResource("7_v2xep")]
 position = Vector2(452, 568)
 
-[node name="collectible18" parent="Collectibles" instance=ExtResource("7_e8qmo")]
+[node name="collectible18" parent="Collectibles" instance=ExtResource("7_v2xep")]
 position = Vector2(337, 571)
 
-[node name="collectible19" parent="Collectibles" instance=ExtResource("7_e8qmo")]
+[node name="collectible19" parent="Collectibles" instance=ExtResource("7_v2xep")]
 position = Vector2(239, 571)
 
 [node name="ScoreLabel" type="Label" parent="."]
@@ -775,4 +778,8 @@ offset_bottom = 31.0
 scale = Vector2(2, 2)
 text = "Score: "
 vertical_alignment = 1
-script = ExtResource("8_msd8i")
+script = ExtResource("8_42yvb")
+
+[node name="BGMLevel1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_j2lxa")
+volume_db = -10.306
