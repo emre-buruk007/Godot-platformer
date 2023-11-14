@@ -8,9 +8,8 @@ func _ready():
 	pass # Replace with function body.
 
 
-func _on_body_entered(_body):
-	get_tree().set_pause(true)
-	
+func _on_body_entered(body):
+	Global.player_freeze(body)
 	next_level.play()
 	await(next_level.finished)
 	get_tree().change_scene_to_file("res://scenes/Levels/level_2.tscn")
