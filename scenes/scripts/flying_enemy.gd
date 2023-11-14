@@ -5,6 +5,8 @@ class_name Enemy
 @onready var path_2d = $"../.."
 @export var speed = 0.15
 @onready var animated_sprite_2d = $AnimatedSprite2D
+@onready var death_sfx = $death_sfx
+@onready var collision_shape_2d = $CollisionShape2D
 
 func _physics_process(delta):
 	# find the current location as % of path completed
@@ -21,5 +23,9 @@ func _physics_process(delta):
 	move_and_slide()
 
 func die():
+	death_sfx.play()
+	animated_sprite_2d.visible = false
+	collision_shape_2d.disabled = true
 	Global.score += 25
+	await(death_sfx.finished)
 	queue_free()

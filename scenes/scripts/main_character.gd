@@ -4,15 +4,12 @@ class_name MainCharacter
 const SPEED = 300.0
 const JUMP_VELOCITY = -600.0
 @onready var animated_sprite_2d = $AnimatedSprite2D
-@onready var enemy_kill_sfx = $enemy_dead
-@onready var player_dead_sfx = $"../player_dead_sfx"
+@onready var player_death = $player_death
+@onready var collision_shape_2d = $CollisionShape2D
+@onready var main_character = $"."
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-
-func player_dead():
-	player_dead_sfx.play()
-	queue_free()
 	
 func check_collectible():
 	pass
@@ -43,6 +40,7 @@ func _physics_process(delta):
 	move_and_slide()
 	
 	# enemy collision kill and death logic
+	# this loop breaks
 	for i in get_slide_collision_count():
 		var collision := get_slide_collision(i)
 		var collider := collision.get_collider()
@@ -56,13 +54,18 @@ func _physics_process(delta):
 			(collision.get_normal().dot(Vector2.RIGHT)> 0.1 or 
 			collision.get_normal().dot(Vector2.LEFT)> 0.1 or
 			collision.get_normal().dot(Vector2.DOWN)> 0.1) )
+		
 		if is_stomping:
 			velocity.y = JUMP_VELOCITY / 2
-			enemy_kill_sfx.play()
 			(collider as Enemy).die()
+			
 		elif deadly_collision:
-			player_dead()
+			animated_sprite_2d.visible = false
+			collision_shape_2d.disabled = true
+			player_death.play()
+			await(player_death.finished)
 			get_tree().change_scene_to_file("res://scenes/game_over_screen.tscn")
+			break
 	
 	
 	

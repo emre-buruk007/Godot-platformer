@@ -43,3 +43,4 @@ shape = SubResource("RectangleShape2D_x2hfv")
 
 [node name="death_sfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_kb540")
+volume_db = -7.495
