@@ -28,7 +28,6 @@ func _physics_process(delta):
 		velocity.y = JUMP_VELOCITY
 
 	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction = Input.get_axis("left", "right")
 	if direction:
 		velocity.x = direction * SPEED
@@ -43,26 +42,22 @@ func _physics_process(delta):
 		var collision := get_slide_collision(i)
 		var collider := collision.get_collider()
 		var is_stomping = (
-			collider is Enemy and is_on_floor()
+			collider is FlyingEnemy and is_on_floor()
 			and collision.get_normal().dot(Vector2.UP) > 0.5)
 		
 		# these are collisions with enemy that kill player 
 		var deadly_collision = (
-			collider is Enemy and 
+			collider is FlyingEnemy and 
 			(collision.get_normal().dot(Vector2.RIGHT)> 0.1 or 
 			collision.get_normal().dot(Vector2.LEFT)> 0.1 or
 			collision.get_normal().dot(Vector2.DOWN)> 0.1) )
 		
 		if is_stomping:
 			velocity.y = JUMP_VELOCITY / 2
-			(collider as Enemy).die()
+			(collider as FlyingEnemy).die()
 			
 		elif deadly_collision:
-			animated_sprite_2d.visible = false
-			collision_shape_2d.disabled = true
-			player_death.play()
-			await(player_death.finished)
-			get_tree().change_scene_to_file("res://scenes/game_over_screen.tscn")
+			player_die()
 			break
 	
 	
@@ -70,3 +65,25 @@ func _physics_process(delta):
 	# logic to turn the sprite during movement
 	var isLeft = velocity.x < 0
 	animated_sprite_2d.flip_h = isLeft
+
+
+func player_die() -> void:
+	animated_sprite_2d.visible = false
+	collision_shape_2d.disabled = true
+	player_death.play()
+	await(player_death.finished)
+	get_tree().change_scene_to_file("res://scenes/game_over_screen.tscn")
+	
+
+func is_collision_deadly(collider, collision) ->bool:
+	var deadly_collision = (
+		collider is FlyingEnemy and 
+		(collision.get_normal().dot(Vector2.RIGHT)> 0.1 or 
+		collision.get_normal().dot(Vector2.LEFT)> 0.1 or
+		collision.get_normal().dot(Vector2.DOWN)> 0.1) )
+	
+	if deadly_collision:
+		return true
+		
+	else:
+		return false

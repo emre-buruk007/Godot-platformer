@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://bpqcx0ojseeqi"]
+
+[ext_resource type="Texture2D" uid="uid://c5cafxngyatdf" path="res://assets/textures/tile_0107.png" id="1_3atxw"]
+[ext_resource type="Texture2D" uid="uid://3ric0xmf3qdm" path="res://assets/textures/tile_0108.png" id="2_4fpf5"]
+[ext_resource type="Script" path="res://scenes/scripts/Trampoline.gd" id="3_8is0n"]
+[ext_resource type="AudioStream" uid="uid://dc0vhclx7ox7o" path="res://assets/music/SFX/jews_harp_boing-7111.mp3" id="3_33p34"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a02m4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_3atxw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_4fpf5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_3atxw")
+}],
+"loop": false,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0n4bn"]
+
+[node name="Trampoline" type="AnimatedSprite2D"]
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_a02m4")
+frame_progress = 0.97083
+script = ExtResource("3_8is0n")
+
+[node name="TrampolineSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_33p34")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_0n4bn")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

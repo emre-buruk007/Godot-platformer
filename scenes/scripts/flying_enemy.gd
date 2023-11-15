@@ -1,5 +1,5 @@
 extends CharacterBody2D
-class_name Enemy
+class_name FlyingEnemy
 
 @onready var path_follow = get_parent()
 @onready var path_2d = $"../.."
