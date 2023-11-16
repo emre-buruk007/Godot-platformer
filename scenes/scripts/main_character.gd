@@ -41,26 +41,16 @@ func _physics_process(delta):
 	for i in get_slide_collision_count():
 		var collision := get_slide_collision(i)
 		var collider := collision.get_collider()
-		var is_stomping = (
-			collider is FlyingEnemy and is_on_floor()
-			and collision.get_normal().dot(Vector2.UP) > 0.5)
-		
-		# these are collisions with enemy that kill player 
-		var deadly_collision = (
-			collider is FlyingEnemy and 
-			(collision.get_normal().dot(Vector2.RIGHT)> 0.1 or 
-			collision.get_normal().dot(Vector2.LEFT)> 0.1 or
-			collision.get_normal().dot(Vector2.DOWN)> 0.1) )
+		var deadly_collision = is_collision_deadly(collider, collision)
+		var is_stomping = is_player_stomping(collider, collision)
 		
 		if is_stomping:
 			velocity.y = JUMP_VELOCITY / 2
-			(collider as FlyingEnemy).die()
+			collider.die()
 			
 		elif deadly_collision:
 			player_die()
 			break
-	
-	
 	
 	# logic to turn the sprite during movement
 	var isLeft = velocity.x < 0
@@ -76,14 +66,25 @@ func player_die() -> void:
 	
 
 func is_collision_deadly(collider, collision) ->bool:
-	var deadly_collision = (
-		collider is FlyingEnemy and 
-		(collision.get_normal().dot(Vector2.RIGHT)> 0.1 or 
-		collision.get_normal().dot(Vector2.LEFT)> 0.1 or
-		collision.get_normal().dot(Vector2.DOWN)> 0.1) )
+	var deadly_collision = null
+	var enemy_classes_arr = Global.types_of_enemies
+	
+	for enemy_type in enemy_classes_arr:
+		if collider.name == enemy_type:
+			deadly_collision = (collision.get_normal().dot(Vector2.RIGHT)> 0.1 or 
+			collision.get_normal().dot(Vector2.LEFT)> 0.1 or
+			collision.get_normal().dot(Vector2.DOWN)> 0.1)
 	
 	if deadly_collision:
 		return true
 		
 	else:
 		return false
+
+func is_player_stomping(collider, collision) -> bool:
+	if (collider.name in Global.types_of_enemies and is_on_floor() and 
+	collision.get_normal().dot(Vector2.UP) > 0.5):
+		return true
+	else:
+		return false
+	

@@ -1,12 +1,39 @@
-[gd_scene load_steps=2 format=3 uid="uid://bylulgr8etoyb"]
+[gd_scene load_steps=7 format=3 uid="uid://bylulgr8etoyb"]
 
+[ext_resource type="Texture2D" uid="uid://b84quqytupepx" path="res://assets/characters/tile_0006.png" id="1_cqneb"]
+[ext_resource type="Script" path="res://scenes/scripts/crawling_enemy.gd" id="1_f6mi3"]
 [ext_resource type="AudioStream" uid="uid://3hwmp5tmo7hy" path="res://assets/music/SFX/enemy_kill.wav" id="1_pw8ps"]
+[ext_resource type="Texture2D" uid="uid://d4abdp4hgcssl" path="res://assets/characters/tile_0007.png" id="2_qaltm"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fjd0b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_cqneb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_qaltm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1py1d"]
+size = Vector2(59, 69)
 
 [node name="CrawlingEnemy" type="CharacterBody2D"]
+script = ExtResource("1_f6mi3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_fjd0b")
+autoplay = "default"
+frame_progress = 0.158365
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 1.5)
+shape = SubResource("RectangleShape2D_1py1d")
 
 [node name="death_sfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_pw8ps")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bswber55bdq3h"]
+[gd_scene load_steps=21 format=3 uid="uid://bswber55bdq3h"]
 
 [ext_resource type="Script" path="res://scenes/scripts/Level1.gd" id="1_21lhu"]
 [ext_resource type="TileSet" uid="uid://dwrbwjm5fssv3" path="res://assets/tilesets/World1_tileset.tres" id="3_53m83"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://npsjf3jjkxie" path="res://scenes/next_level.tscn" id="10_84kvb"]
 [ext_resource type="PackedScene" uid="uid://bpqcx0ojseeqi" path="res://assets/tilesets/Trampoline.tscn" id="12_iqih3"]
 [ext_resource type="PackedScene" uid="uid://d2y81jsdfwfn6" path="res://scenes/Spike.tscn" id="13_ccwai"]
+[ext_resource type="PackedScene" uid="uid://bylulgr8etoyb" path="res://scenes/crawling_enemy.tscn" id="14_lnqdc"]
 
 [sub_resource type="Curve2D" id="Curve2D_fcvll"]
 _data = {
@@ -32,6 +33,12 @@ size = Vector2(20, 1047)
 [sub_resource type="Curve2D" id="Curve2D_7wrvb"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -0.145508, 0.200562, 0, 0, 0, 0, -953.146, 8.20056, 0, 0, 0, 0, -0.145508, 2.20056)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_dw0ed"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0.300903, -1.97589, 0, 0, 0, 0, -527.699, -7.97589, 0, 0, 0, 0, -1.6991, -4.97589)
 }
 point_count = 3
 
@@ -297,3 +304,16 @@ rotates = false
 [node name="FlyingEnemy" parent="Path2D2/PathFollow2D" instance=ExtResource("5_55hpo")]
 position = Vector2(-1.99976, -0.0168304)
 rotation = 3.12755
+
+[node name="Path2D3" type="Path2D" parent="."]
+position = Vector2(1381.7, 591.976)
+curve = SubResource("Curve2D_dw0ed")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D3"]
+position = Vector2(0.300903, -1.97589)
+rotation = -3.13023
+rotates = false
+
+[node name="CrawlingEnemy" parent="Path2D3/PathFollow2D" instance=ExtResource("14_lnqdc")]
+position = Vector2(2.03418, 2.97705)
+rotation = 3.13023
