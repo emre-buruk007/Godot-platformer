@@ -1,16 +1,9 @@
 extends Area2D
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
+@onready var getting_impaled = $GettingImpaled
 
 func _on_body_entered(body):
-	
-	pass # Replace with function body.
+	body.animated_sprite_2d.visible = false
+	body.collision_shape_2d.disabled = true
+	getting_impaled.play()
+	await(getting_impaled.finished)
+	get_tree().change_scene_to_file("res://scenes/game_over_screen.tscn")

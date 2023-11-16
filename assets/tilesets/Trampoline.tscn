@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://c5cafxngyatdf" path="res://assets/textures/tile_0107.png" id="1_3atxw"]
 [ext_resource type="Texture2D" uid="uid://3ric0xmf3qdm" path="res://assets/textures/tile_0108.png" id="2_4fpf5"]
 [ext_resource type="Script" path="res://scenes/scripts/Trampoline.gd" id="3_8is0n"]
-[ext_resource type="AudioStream" uid="uid://dc0vhclx7ox7o" path="res://assets/music/SFX/jews_harp_boing-7111.mp3" id="3_33p34"]
+[ext_resource type="AudioStream" uid="uid://dc0vhclx7ox7o" path="res://assets/music/SFX/trampoline_jump.mp3" id="4_4vko6"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_a02m4"]
 animations = [{
@@ -31,7 +31,7 @@ frame_progress = 0.97083
 script = ExtResource("3_8is0n")
 
 [node name="TrampolineSFX" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_33p34")
+stream = ExtResource("4_4vko6")
 
 [node name="Area2D" type="Area2D" parent="."]
 

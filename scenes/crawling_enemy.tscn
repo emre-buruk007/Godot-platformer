@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bylulgr8etoyb"]
+
+[ext_resource type="AudioStream" uid="uid://3hwmp5tmo7hy" path="res://assets/music/SFX/enemy_kill.wav" id="1_pw8ps"]
+
+[node name="CrawlingEnemy" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="death_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_pw8ps")
+volume_db = -7.495
