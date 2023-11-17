@@ -2,7 +2,7 @@ extends Node
 
 var score = 0
 
-var types_of_enemies = ["FlyingEnemy", "CrawlingEnemy"]
+var types_of_enemies = ["FlyingEnemy", "CrawlingEnemy", "UnkillableEnemy"]
 
 signal set_camera_target(target: CharacterBody2D)
 

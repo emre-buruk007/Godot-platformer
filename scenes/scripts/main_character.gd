@@ -69,20 +69,24 @@ func is_collision_deadly(collider, collision) ->bool:
 	var deadly_collision = null
 	var enemy_classes_arr = Global.types_of_enemies
 	
-	for enemy_type in enemy_classes_arr:
-		if collider.name == enemy_type:
-			deadly_collision = (collision.get_normal().dot(Vector2.RIGHT)> 0.1 or 
-			collision.get_normal().dot(Vector2.LEFT)> 0.1 or
-			collision.get_normal().dot(Vector2.DOWN)> 0.1)
-	
-	if deadly_collision:
+	if collider.name == "UnkillableEnemy":
 		return true
-		
 	else:
-		return false
+		for enemy_type in enemy_classes_arr:
+			if collider.name == enemy_type:
+				deadly_collision = (collision.get_normal().dot(Vector2.RIGHT)> 0.1 or 
+				collision.get_normal().dot(Vector2.LEFT)> 0.1 or
+				collision.get_normal().dot(Vector2.DOWN)> 0.1)
+	
+		if deadly_collision:
+			return true
+		
+		else:
+			return false
 
 func is_player_stomping(collider, collision) -> bool:
-	if (collider.name in Global.types_of_enemies and is_on_floor() and 
+	if (collider.name in Global.types_of_enemies and collider.name != "UnkillableEnemy"
+	and is_on_floor() and 
 	collision.get_normal().dot(Vector2.UP) > 0.5):
 		return true
 	else:

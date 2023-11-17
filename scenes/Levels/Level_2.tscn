@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://jdq1y2060q6n"]
+[gd_scene load_steps=33 format=3 uid="uid://jdq1y2060q6n"]
 
 [ext_resource type="PackedScene" uid="uid://c5gbuvk4fg5ch" path="res://scenes/tile_map.tscn" id="1_e7clq"]
 [ext_resource type="Script" path="res://scenes/scripts/Level_2.gd" id="1_j7fal"]
@@ -8,9 +8,12 @@
 [ext_resource type="Script" path="res://scenes/scripts/ScoreLabel.gd" id="4_lpgo2"]
 [ext_resource type="PackedScene" uid="uid://d2y81jsdfwfn6" path="res://scenes/Spike.tscn" id="5_vxik5"]
 [ext_resource type="PackedScene" uid="uid://npsjf3jjkxie" path="res://scenes/next_level.tscn" id="6_yvdfh"]
-[ext_resource type="PackedScene" uid="uid://bpqcx0ojseeqi" path="res://assets/tilesets/Trampoline.tscn" id="8_hkfcl"]
+[ext_resource type="PackedScene" uid="uid://bpqcx0ojseeqi" path="res://scenes/Trampoline.tscn" id="8_hkfcl"]
 [ext_resource type="PackedScene" uid="uid://5lox3bppik7q" path="res://scenes/flying_enemy.tscn" id="9_rwjkg"]
-[ext_resource type="AudioStream" uid="uid://d1xm7diwecw8t" path="res://assets/music/BGM/Futureopolis.mp3" id="11_yi1ew"]
+[ext_resource type="AudioStream" uid="uid://c77ev2p68kup3" path="res://assets/music/BGM/Puzzle-Dreams-3.mp3" id="11_7ct5k"]
+[ext_resource type="PackedScene" uid="uid://dne0pcbfcbidd" path="res://scenes/unkillable_enemy.tscn" id="11_s13f6"]
+[ext_resource type="PackedScene" uid="uid://bylulgr8etoyb" path="res://scenes/crawling_enemy.tscn" id="12_sl07c"]
+[ext_resource type="PackedScene" uid="uid://bqt6ibamrni6j" path="res://scenes/collectible.tscn" id="14_skxmy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f01ti"]
 texture = ExtResource("3_jnpg1")
@@ -690,6 +693,42 @@ _data = {
 }
 point_count = 3
 
+[sub_resource type="Curve2D" id="Curve2D_ulo3i"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -0.234619, 2.04272, 0, 0, 0, 0, -947.235, -17.9573, 0, 0, 0, 0, -1.23462, 3.04272)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_ewc6k"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -1.047, 0.137268, 0, 0, 0, 0, -703.047, 1.13727, 0, 0, 0, 0, -1.047, 0.137268)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_y6r6r"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1, -2, 0, 0, 0, 0, -673, -18, 0, 0, 0, 0, 1, 0)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_beg8v"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 4.56299, -0.421509, 0, 0, 0, 0, -1338.44, -6.42151, 0, 0, 0, 0, 1.56299, -3.42151)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_scbua"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -3.20703, -31.5963, 0, 0, 0, 0, -662.207, -41.5963, 0, 0, 0, 0, -6.20703, -36.5963)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_qxpal"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 4.98096, -1.36536, 0, 0, 0, 0, -639.019, 1.63464, 0, 0, 0, 0, 4.98096, -3.36536)
+}
+point_count = 3
+
 [node name="Level_2" type="Node2D"]
 script = ExtResource("1_j7fal")
 
@@ -967,9 +1006,516 @@ rotates = false
 position = Vector2(0, 0)
 rotation = 3.13916
 
+[node name="Path2D9" type="Path2D" parent="Enemies"]
+position = Vector2(3228.23, 1200.96)
+curve = SubResource("Curve2D_ulo3i")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Enemies/Path2D9"]
+position = Vector2(-0.234619, 2.04272)
+rotation = -3.12048
+rotates = false
+
+[node name="UnkillableEnemy" parent="Enemies/Path2D9/PathFollow2D" instance=ExtResource("11_s13f6")]
+position = Vector2(-4.76709, 11.1033)
+rotation = 3.12048
+
+[node name="Path2D10" type="Path2D" parent="Enemies"]
+position = Vector2(1435.05, 579.863)
+curve = SubResource("Curve2D_ewc6k")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Enemies/Path2D10"]
+position = Vector2(-1.047, 0.137268)
+rotation = 3.14017
+rotates = false
+
+[node name="CrawlingEnemy" parent="Enemies/Path2D10/PathFollow2D" instance=ExtResource("12_sl07c")]
+rotation = -3.13299
+
+[node name="Path2D11" type="Path2D" parent="Enemies"]
+position = Vector2(2181, 801)
+curve = SubResource("Curve2D_y6r6r")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Enemies/Path2D11"]
+position = Vector2(1, -2)
+rotation = -3.11786
+rotates = false
+
+[node name="CrawlingEnemy" parent="Enemies/Path2D11/PathFollow2D" instance=ExtResource("12_sl07c")]
+rotation = 3.08851
+
+[node name="Path2D12" type="Path2D" parent="Enemies"]
+position = Vector2(5144.44, 1215.42)
+curve = SubResource("Curve2D_beg8v")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Enemies/Path2D12"]
+position = Vector2(4.56299, -0.421509)
+rotation = -3.13713
+rotates = false
+
+[node name="CrawlingEnemy" parent="Enemies/Path2D12/PathFollow2D" instance=ExtResource("12_sl07c")]
+rotation = 3.11474
+
+[node name="Path2D13" type="Path2D" parent="Enemies"]
+position = Vector2(5022.21, 1218.6)
+curve = SubResource("Curve2D_scbua")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Enemies/Path2D13"]
+position = Vector2(-3.20703, -31.5963)
+rotation = -3.12642
+rotates = false
+
+[node name="UnkillableEnemy" parent="Enemies/Path2D13/PathFollow2D" instance=ExtResource("11_s13f6")]
+rotation = -3.14034
+
+[node name="Path2D14" type="Path2D" parent="Enemies"]
+position = Vector2(5209.02, 596.365)
+curve = SubResource("Curve2D_qxpal")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Enemies/Path2D14"]
+position = Vector2(4.98096, -1.36536)
+rotation = 3.13693
+rotates = false
+
+[node name="CrawlingEnemy" parent="Enemies/Path2D14/PathFollow2D" instance=ExtResource("12_sl07c")]
+position = Vector2(-0.046875, 9.99988)
+rotation = -3.12964
+
+[node name="Trampoline2" parent="." instance=ExtResource("8_hkfcl")]
+position = Vector2(3378.65, 1214.36)
+
 [node name="BGMLevel2" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("11_yi1ew")
+stream = ExtResource("11_7ct5k")
 volume_db = -7.32
 
-[node name="Trampoline" parent="BGMLevel2" instance=ExtResource("8_hkfcl")]
-position = Vector2(3378.65, 1214.36)
+[node name="Tutorial" type="Label" parent="."]
+offset_left = 2564.0
+offset_top = 978.0
+offset_right = 3027.0
+offset_bottom = 1046.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 22
+text = "Be careful with this one, it cannot be killed!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Collectibles" type="Node" parent="."]
+
+[node name="collectible" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(279.34, 555.886)
+
+[node name="collectible3" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(361, 555.886)
+
+[node name="collectible4" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(361, 322)
+
+[node name="collectible5" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(522, 486)
+
+[node name="collectible6" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(649, 450)
+
+[node name="collectible7" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(523, 365)
+
+[node name="collectible8" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(553, 205)
+
+[node name="collectible9" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(590, 59)
+
+[node name="collectible10" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(889, 169)
+
+[node name="collectible11" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(737, 59)
+
+[node name="collectible12" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(986, 17)
+
+[node name="collectible13" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(1117, 15)
+
+[node name="collectible14" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(1252, 19)
+
+[node name="collectible15" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(1406, 71)
+
+[node name="collectible16" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(1484, 145)
+
+[node name="collectible17" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(1541, 227)
+
+[node name="collectible18" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(1629, 296)
+
+[node name="collectible19" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(1773, 294)
+
+[node name="collectible20" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(1885, 295)
+
+[node name="collectible21" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(2139, 151)
+
+[node name="collectible22" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(1986, 175)
+
+[node name="collectible23" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(2424, 349)
+
+[node name="collectible24" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(2318, 237)
+
+[node name="collectible25" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(2514, 208)
+
+[node name="collectible26" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(2614, 197)
+
+[node name="collectible27" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(2807, 77)
+
+[node name="collectible28" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(3019, 115)
+
+[node name="collectible29" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(3124, 112)
+
+[node name="collectible30" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(3214, 108)
+
+[node name="collectible31" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(3303, 110)
+
+[node name="collectible32" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(3438, 163)
+
+[node name="collectible33" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(3524, 263)
+
+[node name="collectible34" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(3764, 260)
+
+[node name="collectible35" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(3957, 359)
+
+[node name="collectible36" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(4171, 352)
+
+[node name="collectible37" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(4276, 329)
+
+[node name="collectible38" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(4375, 335)
+
+[node name="collectible39" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(4454, 419)
+
+[node name="collectible40" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(4522, 486)
+
+[node name="collectible41" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(4600, 581)
+
+[node name="collectible42" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(4735, 580)
+
+[node name="collectible43" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(4850, 572)
+
+[node name="collectible44" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(4987, 578)
+
+[node name="collectible45" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(5120, 577)
+
+[node name="collectible46" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(5197, 570)
+
+[node name="collectible47" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(5380, 451)
+
+[node name="collectible48" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(5548, 309)
+
+[node name="collectible49" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(5428, 340)
+
+[node name="collectible50" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(5705, 203)
+
+[node name="collectible51" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(5765, 203)
+
+[node name="collectible52" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(6055, 171)
+
+[node name="collectible53" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(5900, 123)
+
+[node name="collectible54" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(6143, 298)
+
+[node name="collectible55" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(6232, 361)
+
+[node name="collectible56" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(6339, 359)
+
+[node name="collectible57" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(6440, 306)
+
+[node name="collectible58" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(6535, 249)
+
+[node name="collectible59" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(6698, 265)
+
+[node name="collectible60" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(6794, 265)
+
+[node name="collectible61" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(6912, 262)
+
+[node name="collectible62" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(6798, 197)
+
+[node name="collectible63" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(6796, 127)
+
+[node name="collectible64" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(7071, 362)
+
+[node name="collectible65" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(7163, 469)
+
+[node name="collectible66" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(7223, 571)
+
+[node name="collectible67" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(6933, 730)
+
+[node name="collectible68" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(6866, 730)
+
+[node name="collectible69" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(6788, 733)
+
+[node name="collectible70" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(6732, 728)
+
+[node name="collectible71" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(6662, 734)
+
+[node name="collectible72" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(6996, 651)
+
+[node name="collectible73" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(7050, 592)
+
+[node name="collectible74" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(7142, 580)
+
+[node name="collectible75" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(5978, 1211)
+
+[node name="collectible76" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(5841, 1211)
+
+[node name="collectible77" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(5841, 1075)
+
+[node name="collectible78" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(5716, 1075)
+
+[node name="collectible79" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(5786, 1075)
+
+[node name="collectible80" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(5741, 1212)
+
+[node name="collectible81" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(5636, 1212)
+
+[node name="collectible82" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(5536, 1212)
+
+[node name="collectible83" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(5411, 1212)
+
+[node name="collectible84" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(5371, 1144)
+
+[node name="collectible85" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(5282, 1115)
+
+[node name="collectible86" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(5282, 1039)
+
+[node name="collectible87" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(5282, 978)
+
+[node name="collectible88" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(5282, 902)
+
+[node name="collectible89" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(5282, 843)
+
+[node name="collectible90" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(5282, 773)
+
+[node name="collectible91" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(5282, 710)
+
+[node name="collectible92" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(5282, 638)
+
+[node name="collectible93" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(5282, 566)
+
+[node name="collectible94" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(5098, 1227)
+
+[node name="collectible95" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(4929, 1231)
+
+[node name="collectible96" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(4845, 1231)
+
+[node name="collectible97" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(4779, 1231)
+
+[node name="collectible98" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(4728, 1231)
+
+[node name="collectible99" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(4656, 1231)
+
+[node name="collectible100" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(4574, 1231)
+
+[node name="collectible101" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(4507, 1231)
+
+[node name="collectible102" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(4426, 1231)
+
+[node name="collectible103" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(4340, 1231)
+
+[node name="collectible104" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(4265, 1231)
+
+[node name="collectible105" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(4197, 1231)
+
+[node name="collectible106" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(4124, 1231)
+
+[node name="collectible107" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(4049, 1231)
+
+[node name="collectible108" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(3991, 1231)
+
+[node name="collectible109" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(3921, 1231)
+
+[node name="collectible110" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(3856, 1231)
+
+[node name="collectible111" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(3856, 1086)
+
+[node name="collectible112" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(3781, 1029)
+
+[node name="collectible113" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(3671, 1002)
+
+[node name="collectible114" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(3576, 999)
+
+[node name="collectible115" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(3475, 1031)
+
+[node name="collectible116" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(3381, 1139)
+
+[node name="collectible117" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(3298, 1220)
+
+[node name="collectible118" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(3089, 1220)
+
+[node name="collectible119" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(2900, 1220)
+
+[node name="collectible120" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(2704, 1220)
+
+[node name="collectible121" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(2544, 1220)
+
+[node name="collectible122" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(2369, 1220)
+
+[node name="collectible123" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(2369, 1088)
+
+[node name="collectible124" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(2369, 960)
+
+[node name="collectible125" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(2369, 845)
+
+[node name="collectible126" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(2298, 808)
+
+[node name="collectible127" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(2131, 808)
+
+[node name="collectible128" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(1977, 808)
+
+[node name="collectible129" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(1846, 808)
+
+[node name="collectible130" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(1712, 808)
+
+[node name="collectible131" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(1578, 808)
+
+[node name="collectible132" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(1578, 691)
+
+[node name="collectible133" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(1578, 574)
+
+[node name="collectible134" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(1476, 574)
+
+[node name="collectible135" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(1311, 574)
+
+[node name="collectible136" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(1098, 574)
+
+[node name="collectible137" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(893, 574)
+
+[node name="collectible138" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(755, 574)
+
+[node name="collectible139" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(755, 396)
+
+[node name="collectible140" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(888, 347)
+
+[node name="collectible2" parent="Collectibles" instance=ExtResource("14_skxmy")]
+position = Vector2(450.042, 555.886)

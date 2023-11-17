@@ -11,7 +11,7 @@
 [ext_resource type="Script" path="res://scenes/scripts/ScoreLabel.gd" id="8_olc4x"]
 [ext_resource type="AudioStream" uid="uid://binpiau8gvblb" path="res://assets/music/BGM/Analog-Nostalgia.mp3" id="9_qlw7e"]
 [ext_resource type="PackedScene" uid="uid://npsjf3jjkxie" path="res://scenes/next_level.tscn" id="10_84kvb"]
-[ext_resource type="PackedScene" uid="uid://bpqcx0ojseeqi" path="res://assets/tilesets/Trampoline.tscn" id="12_iqih3"]
+[ext_resource type="PackedScene" uid="uid://bpqcx0ojseeqi" path="res://scenes/Trampoline.tscn" id="12_iqih3"]
 [ext_resource type="PackedScene" uid="uid://d2y81jsdfwfn6" path="res://scenes/Spike.tscn" id="13_ccwai"]
 [ext_resource type="PackedScene" uid="uid://bylulgr8etoyb" path="res://scenes/crawling_enemy.tscn" id="14_lnqdc"]
 
