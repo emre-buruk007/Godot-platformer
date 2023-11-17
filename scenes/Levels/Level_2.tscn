@@ -7,12 +7,12 @@
 [ext_resource type="Texture2D" uid="uid://ba0ggt3ppji48" path="res://assets/tilesets/tilemap_packed.png" id="3_jnpg1"]
 [ext_resource type="Script" path="res://scenes/scripts/ScoreLabel.gd" id="4_lpgo2"]
 [ext_resource type="PackedScene" uid="uid://d2y81jsdfwfn6" path="res://scenes/Spike.tscn" id="5_vxik5"]
-[ext_resource type="PackedScene" uid="uid://npsjf3jjkxie" path="res://scenes/next_level.tscn" id="6_yvdfh"]
 [ext_resource type="PackedScene" uid="uid://bpqcx0ojseeqi" path="res://scenes/Trampoline.tscn" id="8_hkfcl"]
 [ext_resource type="PackedScene" uid="uid://5lox3bppik7q" path="res://scenes/flying_enemy.tscn" id="9_rwjkg"]
 [ext_resource type="AudioStream" uid="uid://c77ev2p68kup3" path="res://assets/music/BGM/Puzzle-Dreams-3.mp3" id="11_7ct5k"]
 [ext_resource type="PackedScene" uid="uid://dne0pcbfcbidd" path="res://scenes/unkillable_enemy.tscn" id="11_s13f6"]
 [ext_resource type="PackedScene" uid="uid://bylulgr8etoyb" path="res://scenes/crawling_enemy.tscn" id="12_sl07c"]
+[ext_resource type="PackedScene" uid="uid://bwou1p1goee8w" path="res://scenes/game_win.tscn" id="14_l5xss"]
 [ext_resource type="PackedScene" uid="uid://bqt6ibamrni6j" path="res://scenes/collectible.tscn" id="14_skxmy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f01ti"]
@@ -893,9 +893,6 @@ physics_material_override = SubResource("PhysicsMaterial_q0l10")
 position = Vector2(5.5, 62)
 shape = SubResource("RectangleShape2D_0mkfo")
 
-[node name="NextLevel" parent="." instance=ExtResource("6_yvdfh")]
-position = Vector2(7224, 643)
-
 [node name="Trampoline" parent="." instance=ExtResource("8_hkfcl")]
 position = Vector2(5281, 1169)
 
@@ -1519,3 +1516,6 @@ position = Vector2(888, 347)
 
 [node name="collectible2" parent="Collectibles" instance=ExtResource("14_skxmy")]
 position = Vector2(450.042, 555.886)
+
+[node name="GameWin" parent="." instance=ExtResource("14_l5xss")]
+position = Vector2(7224, 642)

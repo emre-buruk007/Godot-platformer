@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bn4qb3qx64etg"]
 
 [ext_resource type="Script" path="res://scenes/scripts/GameWinScreen.gd" id="1_175cn"]
-[ext_resource type="Script" path="res://scenes/final_score.gd" id="2_5dfcm"]
+[ext_resource type="Script" path="res://scenes/scripts/final_score.gd" id="2_h170x"]
 [ext_resource type="AudioStream" uid="uid://c7xqa3ko6abfs" path="res://assets/music/BGM/Cyber-Dream-Loop.mp3" id="2_qy10e"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qrnec"]
@@ -49,7 +49,7 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 32
 label_settings = SubResource("LabelSettings_2jts5")
 horizontal_alignment = 1
-script = ExtResource("2_5dfcm")
+script = ExtResource("2_h170x")
 
 [node name="CenterContainer" type="CenterContainer" parent="PanelContainer/MarginContainer/Rows"]
 layout_mode = 2
@@ -71,3 +71,6 @@ text = " QUIT "
 
 [node name="BGM" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_qy10e")
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows/ButtonRestart" to="." method="_on_button_restart_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows/ButtonQuit" to="." method="_on_button_quit_pressed"]

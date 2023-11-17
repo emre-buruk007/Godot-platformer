@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bwou1p1goee8w"]
+[gd_scene load_steps=5 format=3 uid="uid://bwou1p1goee8w"]
 
 [ext_resource type="Texture2D" uid="uid://73u6gdupgqp6" path="res://assets/characters/tile_0150.png" id="1_j0a3y"]
 [ext_resource type="Script" path="res://scenes/scripts/game_win.gd" id="1_rf6av"]
+[ext_resource type="AudioStream" uid="uid://dwx61cdkxjgis" path="res://assets/music/SFX/game_win.wav" id="3_ykx1k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2e7jh"]
 size = Vector2(54, 54)
@@ -16,5 +17,8 @@ texture = ExtResource("1_j0a3y")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_2e7jh")
+
+[node name="GameWin" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_ykx1k")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
