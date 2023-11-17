@@ -1,0 +1,73 @@
+[gd_scene load_steps=6 format=3 uid="uid://bn4qb3qx64etg"]
+
+[ext_resource type="Script" path="res://scenes/scripts/GameWinScreen.gd" id="1_175cn"]
+[ext_resource type="Script" path="res://scenes/final_score.gd" id="2_5dfcm"]
+[ext_resource type="AudioStream" uid="uid://c7xqa3ko6abfs" path="res://assets/music/BGM/Cyber-Dream-Loop.mp3" id="2_qy10e"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qrnec"]
+bg_color = Color(0.443137, 0.658824, 0.509804, 1)
+border_width_left = 20
+border_width_top = 20
+border_width_right = 20
+border_width_bottom = 20
+border_color = Color(0.254902, 0.54902, 0.356863, 1)
+border_blend = true
+
+[sub_resource type="LabelSettings" id="LabelSettings_2jts5"]
+font_size = 64
+
+[node name="GameWinScreen" type="CanvasLayer"]
+script = ExtResource("1_175cn")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qrnec")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="Rows" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 100
+
+[node name="Title" type="Label" parent="PanelContainer/MarginContainer/Rows"]
+layout_mode = 2
+text = "YOU WIN!"
+label_settings = SubResource("LabelSettings_2jts5")
+horizontal_alignment = 1
+
+[node name="Score" type="Label" parent="PanelContainer/MarginContainer/Rows"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+label_settings = SubResource("LabelSettings_2jts5")
+horizontal_alignment = 1
+script = ExtResource("2_5dfcm")
+
+[node name="CenterContainer" type="CenterContainer" parent="PanelContainer/MarginContainer/Rows"]
+layout_mode = 2
+
+[node name="ButtonRows" type="VBoxContainer" parent="PanelContainer/MarginContainer/Rows/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ButtonRestart" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows"]
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+theme_override_font_sizes/font_size = 36
+text = " PLAY AGAIN "
+
+[node name="ButtonQuit" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = " QUIT "
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_qy10e")
