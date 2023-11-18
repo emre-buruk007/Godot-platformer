@@ -12,4 +12,4 @@ func _on_body_entered(body):
 	Global.player_freeze(body)
 	next_level.play()
 	await(next_level.finished)
-	get_tree().change_scene_to_file("res://scenes/Levels/level_2.tscn")
+	get_tree().change_scene_to_file("res://scenes/Levels/Level_2.tscn")
